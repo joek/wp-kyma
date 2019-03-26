@@ -1,0 +1,28 @@
+ToDo's:
+- Manual: Generate a certificate
+
+./getcert.sh
+
+- Use certificate (from file system as of now) to register Event Definition
+- Add Simple Hook and push event using certificate
+- Manual Create basic auth user and add it to registration
+- Try to call API using a lambda function
+- Add Swagger plugin and register API
+
+Future Functionality:
+- Replace basic auth with oAuth (maybe write custom OAuth provider)
+- Add event hooks via UI
+- Think about JWT Token Authentication
+
+Swagger API Definition:
+https://github.com/starfishmod/WPAPI-SwaggerGenerator
+
+Event Hooks: https://developer.wordpress.org/reference/hooks/
+
+Basic Auth Plugin: 
+- Create new User
+
+
+TODO:
+- Cleanup and Enhanced error handling
+- Make Event Handling more generic

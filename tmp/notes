@@ -1,0 +1,34 @@
+ToDo's:
+- Manual: Generate a certificate
+
+openssl genrsa -out mkt-cloud.key 2048
+openssl req -new -sha256 -out mkt-cloud.csr -key mkt-cloud.key -subj "/OU=OrgUnit/O=Organization/L=Waldorf/ST=Waldorf/C=DE/CN=mkt-cloud"
+ 
+export KYMA_CSR=$(openssl base64 -in mkt-cloud.csr | tr -d '\n')
+ 
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data "{\"csr\":\"${KYMA_CSR}\"}"  \
+  https://connector-service.demo-ak2.cluster.extend.sap.cx/v1/applications/mkt-cloud/client-certs?token=NAegtxjdQfMJe-CQYJdVwI3vhgeQ39oX7-6UcXoRTmULHgCfqYteK9RV7qhXgd_m491NJ4caTze_IVfQiOqMzQ== \
+   >  mkt-cloud.crt.json
+ 
+ 
+cat mkt-cloud.crt.json | jq '.crt' | tr -d '\"' | base64 --decode > mkt-cloud.crt
+- Use certificate (from file system as of now) to register Event Definition
+- Add Simple Hook and push event using certificate
+- Manual Create basic auth user and add it to registration
+- Try to call API using a lambda function
+- Add Swagger plugin and register API
+
+Future Functionality:
+- Replace basic auth with oAuth (maybe write custom OAuth provider)
+- Add event hooks via UI
+- Think about JWT Token Authentication
+
+Swagger API Definition:
+https://github.com/starfishmod/WPAPI-SwaggerGenerator
+
+Event Hooks: https://developer.wordpress.org/reference/hooks/
+
+Basic Auth Plugin: 
+- Create new User
