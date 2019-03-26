@@ -31,7 +31,7 @@ if ( !class_exists( 'KymaConnector_EventSettings' ) ) {
         public static function install($option_group){
             $events = array();
             array_push($events, array('event_type'=>'user.created', 'event_version'=>'v1', 'hook'=>'user_register', 'description'=>'User Register Event v1', 'payload'=>'{"userId":{"type":"string","description":"Id of a User","title":"User uid"}}'));
-            array_push($events, array('event_type'=>'comment.post', 'event_version'=>'v1', 'hook'=>'comment_post', 'description'=>'Comment Post Event v1', 'payload'=>'{"commentId":{"type":"string","description":"Unique id of a comment","title":"Comment id"},"commentAuthorEmail":{"type":"string","description":"Email of an author","title":"Authors email"},"commentContent":{"type":"string","description":"Content of a comment","title":"Comment content"}}'));
+            array_push($events, array('event_type'=>'comment.post', 'event_version'=>'v1', 'hook'=>'comment_post', 'description'=>'Comment Post Event v1', 'payload'=>'{"commentId":{"type":"string","description":"Unique id of a comment","title":"Comment id"}}'));
 
             add_option($option_group.'_events', $events);
         }
